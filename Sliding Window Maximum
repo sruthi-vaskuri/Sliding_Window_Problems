@@ -1,0 +1,33 @@
+class Solution:
+    
+    #Function to find maximum of each subarray of size k.
+    def max_of_subarrays(self,arr,n,k):
+        
+        #code here
+        result=[]
+        l=[]
+        for i in range(k):
+            if len(result)==0:
+                result.append(i)
+            else:
+                while len(result)!=0 and arr[result[-1]]<=arr[i]:
+                    result.pop(-1)
+                result.append(i)
+        l.append(arr[result[0]])
+        for i in range(k,n):
+            if result[0]==i-k:
+                result.pop(0)
+            if len(result)==0:
+                result.append(i)
+            else:
+                while len(result)!=0 and arr[result[-1]]<=arr[i]:
+                    result.pop(-1)
+                result.append(i)
+            l.append(arr[result[0]])
+        return l
+            
+      
+LINK : https://practice.geeksforgeeks.org/problems/maximum-of-all-subarrays-of-size-k3101/1
+
+
+REFERENCE : https://www.youtube.com/watch?v=CZQGRp93K4k&t=325s
